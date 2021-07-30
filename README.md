@@ -1,46 +1,45 @@
-# Drop the losers with historical control group
+The codes in this repository can be used to reproduce the results in the paper
 
-Incorporating historic information in multi-arm clinical trials for pediatric cancers: drop the losers with historical control group
+# A two-stage drop-the-losers design for time-to-event outcome using a historical control arm
 
-## Simulation study of multi-arm clinical trial: drop-the-loser with time to event outcome using historical control 
+by R. Abbas, J. Wason, S. Michiels, and G. Le Teuff (2021)
 
-Here we report the operating characteristics of the design  
-source the "DTLHC_functions.r"
-run "DTLHC_simulations.r" to reproduce results.
+Phase II clinical trials are simulated according to a drop-the-losers and to a fixed design both using historical control arm.
 
-__Design general parameters__
+# Drop-the-losers design with historical control arm
 
-* 3 arms
-* 2 years follow-up
-* N_1 patients per arms at stage 1
-* N_2 patients per arm at stage 2
-* Family-wise error rate =0.1  #it is a phase II clinical trial
+DTLHC_functions.r 
 
-__Interim analysis__
+This file loads functions required to run the DTLHC_main.r simulation program.
 
-* Decision rules: drop the losers 
-* bounds: none (keep with the arm giving the maximal LR statistic at interim)
+DTLHC_main.r 
 
-__Final analysis__
+This file runs the two-stage drop-the-losers design for time-to-event outcome using a historical control arm and gives power or type I error rate as shown in Tables 2 & 4.
 
-* Decision rules: Log-rank test for historical control
+# Drop-the-losers design with misspecified historical control arm
 
-__Hazard rates:__  
+DTLHC_misspecified_functions.r 
 
-* hazard.null=-log(0.4)/2
-* hazard.exp (small effect): hr=-log(0.50)/2
-* hazard.exp (great effect): hr=-log(0.65)/2
+This file loads functions required to run the DTLHC_misspecified_main.r simulation program.
 
-__Historical data__
+DTLHC_misspecified_main.r 
 
-* historic data distribution: Weibull
-* parameter: kappa=0.9509
+This file runs the two-stage drop-the-losers design for time-to-event outcome in case of misspecification of the historical control arm and gives power or type I error rate as shown in tables 5-6.
 
-## Simulation results: Power
+# Fixed design (Multi-Arm design with No Interim analysis) with or without correction for multiplicity
 
-In a multi-arm setting the concept of power is complex due to multiplicity of hypotheses. The probability to reject all false null hypothese is called the conjunctive power. The probability to reject at least one false null hypothesis is called the disjunctive power. Usually, it is harder to obtain a high conjunctive power. Here the design do not allow to reject more than one null hypothesis, we report disjunctive power.
+MANI_functions.r 
+
+This file loads functions required to run the MANI_main.r simulation program.
+
+MANI_main.r 
+
+This file runs the multi-arm fixed design and gives power or type I error rate as shown in tables A1-A2 in appendix.
+
+# Simulation results: Power
+
+In a multi-arm setting the concept of power is complex due to multiplicity of hypotheses. The probability to reject all false null hypothese is called the conjunctive power. The probability to reject at least one false null hypothesis is called the disjunctive power. Usually, it is harder to obtain a high conjunctive power. Here the drop-the-losers design do not allow to reject more than one null hypothesis, we report disjunctive power.
  
-## Simulation results: Type 1 error rate
+# Simulation results: Type 1 error rate or family-wise error rate
 
 By design, the family-wise error rate is controlled at the global null hypothesis. Here we report the type 1 error rate per scenario. The scenario 1, considering only experimental arms with null effect (also called the global null hypothesis) reflects the empirical family-wise error rate. 
-
